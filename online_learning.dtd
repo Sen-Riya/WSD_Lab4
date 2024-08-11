@@ -1,0 +1,15 @@
+
+
+<!ELEMENT OnlineLearning (PlatformName, Courses)>
+<!ATTLIST OnlineLearning
+    xmlns:xsi CDATA #IMPLIED
+    xsi:noNamespaceSchemaLocation CDATA #IMPLIED
+>
+<!ELEMENT PlatformName (#PCDATA)>
+<!ELEMENT Courses (Course+)>
+<!ELEMENT Course (CourseName, Instructor, Level, Duration, Price)>
+<!ELEMENT CourseName (#PCDATA)>
+<!ELEMENT Instructor (#PCDATA)>
+<!ELEMENT Level (#PCDATA)>
+<!ELEMENT Duration (#PCDATA)>
+<!ELEMENT Price (#PCDATA)>

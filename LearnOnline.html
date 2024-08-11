@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Learning Platform</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        text-align: center;
+        color: #4caf50;
+      }
+      table {
+        width: 80%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+      }
+      th {
+        background-color: #4caf50;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      #map {
+        height: 500px;
+        width: 75rem;
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+      .center {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+      }
+    </style>
+    <script>
+      function loadXMLData() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "online_learning.xml", true);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const xmlDoc = xhr.responseXML;
+            const platformName =
+              xmlDoc.getElementsByTagName("PlatformName")[0].childNodes[0]
+                .nodeValue;
+            const courses = xmlDoc.getElementsByTagName("Course");
+
+            let tableBody = "";
+
+            for (let i = 0; i < courses.length; i++) {
+              const courseName =
+                courses[i].getElementsByTagName("CourseName")[0].childNodes[0]
+                  .nodeValue;
+              const instructor =
+                courses[i].getElementsByTagName("Instructor")[0].childNodes[0]
+                  .nodeValue;
+              const level =
+                courses[i].getElementsByTagName("Level")[0].childNodes[0]
+                  .nodeValue;
+              const duration =
+                courses[i].getElementsByTagName("Duration")[0].childNodes[0]
+                  .nodeValue;
+              const price =
+                courses[i].getElementsByTagName("Price")[0].childNodes[0]
+                  .nodeValue;
+
+              tableBody += `<tr>
+                            <td>${platformName}</td>
+                            <td>${courseName}</td>
+                            <td>${instructor}</td>
+                            <td>${level}</td>
+                            <td>${duration}</td>
+                            <td>${price}</td>
+                        </tr>`;
+            }
+
+            document.getElementById("table-body").innerHTML = tableBody;
+          }
+        };
+        xhr.send();
+      }
+
+      window.onload = function () {
+        loadXMLData();
+      };
+    </script>
+  </head>
+  <body>
+    <h1>LEARN ONLINE - Online Learning Platform Prices</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Platform Name</th>
+          <th>Course Name</th>
+          <th>Instructor</th>
+          <th>Level</th>
+          <th>Duration (Days)</th>
+          <th>Price (Rs.)</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <!-- Table rows will be inserted here -->
+      </tbody>
+    </table>
+    <div class="center">
+      <div id="map"></div>
+    </div>
+    <!-- leaflet js -->
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <!-- leaflet routiing machine js -->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script>
+      var map = L.map("map").setView([12.93622, 77.606256], 13);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+      var marker = L.marker([12.93622, 77.606256]).addTo(map);
+      marker.bindPopup("<b>Learn Online</b><br>Near St. Johns Hospital, Hosur Main Road, Bengaluru, Karnataka.").openPopup();
+      L.Routing.control({
+        waypoints: [L.latLng(12.93622, 77.606256),  L.latLng(12.969865, 77.575879)],
+      }).addTo(map);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="OnlineLearning">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PlatformName" type="xs:string"/>
+                <xs:element name="Courses">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Course" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="CourseName" type="xs:string"/>
+                                        <xs:element name="Instructor" type="xs:string"/>
+                                        <xs:element name="Level">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="Beginner"/>
+                                                    <xs:enumeration value="Intermediate"/>
+                                                    <xs:enumeration value="Advanced"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Duration">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:positiveInteger">
+                                                    <xs:minInclusive value="10"/>
+                                                    <xs:maxInclusive value="180"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                        <xs:element name="Price">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:decimal">
+                                                    <xs:minInclusive value="100"/>
+                                                    <xs:maxInclusive value="1000"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

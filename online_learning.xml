@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE OnlineLearning SYSTEM "online_learning.dtd">
+<OnlineLearning xmlns:xsi="http://www.learnonline.com" xsi:noNamespaceSchemaLocation="online_learning.xsd">
+
+
+
+    <!-- Elements -->
+    <PlatformName>Learn Online</PlatformName>
+    <Courses>
+        <Course>
+            <CourseName>HTML &amp; CSS</CourseName>
+            <Instructor>Code With Harry</Instructor>
+            <Level>Beginner</Level>
+            <Duration>12</Duration> <!-- Duration in days -->
+            <Price>249</Price>
+        </Course>
+        <Course>
+            <CourseName>JavaScript</CourseName>
+            <Instructor>Akshay Saini</Instructor>
+            <Level>Intermediate</Level>
+            <Duration>15</Duration> <!-- Duration in days -->
+            <Price>349</Price>
+        </Course>
+        <Course>
+            <CourseName>React Js</CourseName>
+            <Instructor>SimpliLearn</Instructor>
+            <Level>Advanced</Level>
+            <Duration>30</Duration> <!-- Duration in days -->
+            <Price>449</Price>
+        </Course>
+        <Course>
+            <CourseName>Node js</CourseName>
+            <Instructor>Free Code Camp</Instructor>
+            <Level>Advanced</Level>
+            <Duration>20</Duration> <!-- Duration in days -->
+            <Price>599</Price>
+        </Course>
+        <Course>
+            <CourseName>Mongodb</CourseName>
+            <Instructor>Net Ninja</Instructor>
+            <Level>Intermediate</Level>
+            <Duration>18</Duration> <!-- Duration in days -->
+            <Price>449</Price>
+        </Course>
+    </Courses>
+</OnlineLearning>
